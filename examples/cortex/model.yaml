@@ -1,0 +1,5 @@
+# A chave vem do cofre de credenciais da administração ou, sem ela, de ANTHROPIC_API_KEY no .env.
+model:
+  provider: anthropic
+  credential_secret_ref: anthropic-api-key
+  default_model: claude-sonnet-5-5

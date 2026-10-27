@@ -43,7 +43,8 @@ Estas peças são do OpenBot e não precisamos escrever:
 2. **Devolver a entrega na Task.** Nota de handoff, link do artefato, estado final.
 3. **Custo por execução.** O OpenBot não mede tokens nem custo por run. Sem isso, a cota de agentes do
    Cortex não enxerga o CortexBot.
-4. **Pacote do Cortex.** Nome, Bots, skills e o MCP do Cortex em `examples/cortex/`.
+4. **Pacote do Cortex.** Nome, Bots e skills em `examples/cortex/` (feito). O MCP do Cortex não cabe
+   no pacote: servidor MCP e concessões são cadastrados pela administração (fase 2, item 2.2).
 
 ## Fluxo, fase 1
 

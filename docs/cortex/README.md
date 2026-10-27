@@ -22,8 +22,9 @@ a CopilotKit entrega.
 
 ## Estado
 
-Nada de código ainda. Este é o ponto de partida: o fork está idêntico ao `CopilotKit/openbot` de
-26/10/2026 (commit `3592f85`), mais esta documentação.
+O fork está idêntico ao `CopilotKit/openbot` de 26/10/2026 (commit `3592f85`), mais esta
+documentação e o pacote de tenant `examples/cortex/` (item 1.1 do [roadmap](roadmap.md)). Nenhum
+arquivo deles foi alterado.
 
 ## Licença
 

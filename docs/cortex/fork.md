@@ -8,7 +8,7 @@ uma semana de conflitos. A regra é: **o nosso fica em pastas nossas, e o deles 
 | Caminho | O que tem |
 |---|---|
 | `docs/cortex/` | Esta documentação |
-| `examples/cortex/` | Pacote de tenant do CortexBot: `brand.yaml`, `agents.yaml`, `skills.yaml`, `model.yaml`, `channels.yaml`, `knowledge.yaml` |
+| `examples/cortex/` | Pacote de tenant do CortexBot: `brand.yaml`, `agents.yaml`, `agents/`, `skills.yaml`, `model.yaml`, `channels.yaml`, `knowledge.yaml` |
 | `cortex/` | Código nosso que roda ao lado do OpenBot (a ponte da fase 2 e os scripts) |
 
 O adaptador da fase 1 mora no `cortex-symph`, não aqui.
