@@ -1,0 +1,6 @@
+channels:
+  - id: execucao-cortex
+    name: Execução do Cortex
+    description: Acompanhar e conversar sobre as Tasks que o Cortex delegou.
+    permitted_agents: [executor-cortex]
+    allowed_groups: [all]

@@ -1,0 +1,5 @@
+# O nome visível vem daqui: sidebar, login, onboarding e tela inicial. Os textos fixos que ainda dizem
+# "OpenBot" em app/src ficam como estão (docs/cortex/fork.md).
+tenant:
+  id: cortex
+  product_name: CortexBot

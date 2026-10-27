@@ -1,0 +1,31 @@
+# Skills do pacote do CortexBot. Uma skill é uma instrução e não concede nada: o Bot só chama o que a
+# administração concedeu a ele (examples/fintech/skills.yaml explica o porquê do arquivo).
+#
+# Refs de ferramenta são `<serverId>/<toolName>`. Uma ref de conector ainda não adicionado fica inerte
+# até alguém conectá-lo.
+skills:
+  - slug: entregar-task-cortex
+    title: Entregar uma Task do Cortex
+    summary: Fechar uma Task do Cortex com o que foi feito, o que não foi e o critério de aceite.
+    instructions: >-
+      Monte a entrega da Task que você acabou de trabalhar. Ela é lida por quem delegou, e vira a nota de
+      handoff da Task no Cortex, então precisa se sustentar sozinha. Use três seções, nesta ordem.
+      "Feito": cada item com o link ou o caminho do que produziu. Um item sem prova vai para a próxima
+      seção. "Não feito": o que ficou de fora e o motivo (sem ferramenta, sem acesso, recusado pela
+      política, aguardando uma pessoa). "Critério de aceite": cada critério do briefing com atendido,
+      não atendido ou não verificado. Não resuma o briefing de volta e não acrescente recomendações que
+      ninguém pediu.
+    tools: []
+
+  - slug: pesquisar-na-web
+    title: Pesquisar na web
+    summary: Pesquisar fontes públicas atuais e escrever um resumo com as fontes citadas.
+    instructions: >-
+      Use as ferramentas de pesquisa na web que você tem para achar fontes e ler as páginas escolhidas
+      antes de responder. Mantenha as buscas específicas e curtas. Envie só o objetivo da pesquisa, as
+      buscas e as URLs; nunca a conversa inteira nem documentos privados. Cite as URLs usadas e diga o
+      que não achou ou que erro a ferramenta deu. Se faltar a concessão, quem resolve é a
+      administração; nunca contorne uma recusa.
+    tools:
+      - "@research/search"
+      - "@research/fetch"

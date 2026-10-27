@@ -46,13 +46,16 @@ nos outros perfis.
 
 ### CortexBot: só configuração
 
-1. Pacote `examples/cortex/` com `product_name: CortexBot` e um Bot "Executor do Cortex" (built-in),
-   com `system_prompt` em português dizendo que ele recebe uma Task com aceite e devolve o que fez,
-   o que não fez e os links.
+1. Pacote `examples/cortex/` (feito): `product_name: CortexBot` e o Bot `executor-cortex`
+   ("Executor do Cortex", built-in), com instruções em português. Ele recebe uma Task com critério de
+   aceite e termina com a entrega em três seções: Feito (com links), Não feito (com o motivo) e
+   Critério de aceite. Detalhes em [rodar.md](rodar.md#o-pacote-examplescortex).
 2. Uma Responsibility "Executar Task do Cortex" nesse Bot, com gatilho `webhook`. O CortexBot gera o
-   segredo, que vai para `CORTEXBOT_WEBHOOK_SECRET` no Symph.
-3. Política de ações começando restrita: browser e arquivos liberados, shell e envio de e-mail só com
-   aprovação, até a experiência mostrar o que pode ser solto.
+   segredo, que vai para `CORTEXBOT_WEBHOOK_SECRET` no Symph. Responsibilities não são declaradas no
+   pacote: são criadas na tela do Bot, e por isso o item 1.2 do roadmap é um roteiro.
+3. Política de ações começando restrita: browser e arquivos liberados, shell e envio só com
+   aprovação, até a experiência mostrar o que pode ser solto. A política e as aprovações não ficam no
+   pacote ([rodar.md](rodar.md#política-inicial)).
 
 ## Payload do webhook
 

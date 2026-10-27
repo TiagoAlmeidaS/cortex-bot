@@ -10,8 +10,9 @@ para o CortexBot e o que costuma dar errado.
   `INTELLIGENCE_GATEWAY_WS_URL` e `INTELLIGENCE_API_KEY` (`docs/configuration.md`). O plano
   Developer é gratuito. Há também uma versão local em Docker, só para macOS, com licença de 30 dias
   renovável.
-- Uma chave de modelo. O pacote de exemplo usa OpenAI. O Anthropic também está entre os provedores
-  conhecidos (`shared/model-providers.json`).
+- Uma chave de modelo. O pacote `examples/cortex/` usa Anthropic (`ANTHROPIC_API_KEY`). O pacote de
+  exemplo deles usa OpenAI (`OPENAI_API_KEY`). Os dois são os únicos provedores que o `model.yaml`
+  aceita.
 
 ## Local
 
@@ -23,10 +24,11 @@ npx --yes copilotkit@latest project select
 bun scripts/setup-learning.ts
 ```
 
-No `.env`, além da chave de modelo:
+No `.env`:
 
 ```sh
 TENANT_PACKAGE_DIR=../examples/cortex   # resolvido a partir de server/
+ANTHROPIC_API_KEY=...                   # ou cadastre a chave na administração, que tem prioridade
 OPENBOT_SELF_HOST_BANNER=false
 ```
 
@@ -38,8 +40,40 @@ bash scripts/start.sh    # Docker, migrations, API :3001, worker, app :3010
 
 Abra <http://localhost:3010>. `bash scripts/stop.sh` derruba tudo, sem apagar volumes.
 
-Enquanto `examples/cortex/` não existe, use o pacote de exemplo deles (o padrão) para conhecer o
-produto.
+Sem `TENANT_PACKAGE_DIR`, o servidor sobe com o pacote de exemplo deles (`examples/fintech`), que
+serve para conhecer o produto.
+
+## O pacote `examples/cortex/`
+
+| Arquivo | O que tem |
+|---|---|
+| `brand.yaml` | `tenant.id: cortex`, `product_name: CortexBot` |
+| `agents.yaml` | Um Bot built-in, `executor-cortex` ("Executor do Cortex"), com instruções em português e o formato de entrega |
+| `skills.yaml` | `entregar-task-cortex` (Feito, Não feito, Critério de aceite) e `pesquisar-na-web` (tools `@research/*`) |
+| `channels.yaml` | Canal `execucao-cortex`, só com o Executor |
+| `model.yaml` | Anthropic, `claude-sonnet-5-5` |
+| `knowledge.yaml` | Vazio. O arquivo é obrigatório, mas nada no servidor o lê hoje |
+| `agents/` | Um Bot por arquivo, para os próximos |
+
+Para conferir o pacote sem subir o ambiente, chame `loadTenantPackage` de `server/src/tenant-package.ts`
+com o caminho do pacote. Ela recusa o mesmo que o servidor recusaria ao iniciar.
+
+### Política inicial
+
+A política de ações não faz parte do pacote. Ela vem de `AGENT_COMPUTER_POLICY` no `.env` (JSON
+`{"mode":"enforce","deny":[...],"allow":[...]}`, regras em CEL) ou da política salva pela
+administração, que tem prioridade. O padrão do OpenBot permite tudo (`allow: ["true"]`).
+
+Para o Executor do Cortex, comece restrito:
+
+- **Aprovações:** em `/bots/executor-cortex/approvals`, faça o Bot perguntar antes de shell e de
+  qualquer envio (e-mail, mensagem, formulário). Browser e arquivos ficam liberados.
+- **Política:** se precisar barrar algo de vez, use `deny` com `bot.id == "executor-cortex"` e o campo
+  que importa (`tool.name`, `page.host`, `mcp.server`). Os campos estão em `docs/architecture.md`,
+  "Browser action governance". Comece em `"mode": "dry-run"` para ver o que a regra pegaria sem
+  bloquear nada.
+
+Solte uma restrição só quando os runs na auditoria mostrarem que ela é desnecessária.
 
 ## VPS
 

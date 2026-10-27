@@ -14,7 +14,7 @@ Cada item é uma PR. Item no `cortex-symph` ou no `cortex-execution` vai para aq
 
 | # | Entrega | Onde | Pronto quando |
 |---|---|---|---|
-| 1.1 | Pacote `examples/cortex/` (nome CortexBot, Bot "Executor do Cortex" em português, modelo, política inicial) | cortex-bot | o servidor sobe com `TENANT_PACKAGE_DIR=../examples/cortex` |
+| 1.1 | Pacote `examples/cortex/` (nome CortexBot, Bot "Executor do Cortex" em português, modelo) e a política inicial documentada | cortex-bot | o servidor sobe com `TENANT_PACKAGE_DIR=../examples/cortex` (o pacote já passa em `loadTenantPackage`; falta subir o ambiente, que depende do 0.3) |
 | 1.2 | Responsibility "Executar Task do Cortex" com gatilho webhook, e um roteiro para criá-la | cortex-bot (doc) | um `curl` assinado dispara um run visível no histórico |
 | 1.3 | Adaptador `cortex-bot` no Symph | cortex-symph | teste do adaptador com o gatilho simulado passando |
 | 1.4 | Leitura do fim do run (token de serviço ou aviso de volta) | cortex-symph, talvez cortex-bot | o Symph sabe quando o run terminou e com que texto |
